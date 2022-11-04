@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+
+    <TextView
+        android:id="@+id/login_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login Page"
+        android:textColor="@color/purple_200"
+        android:textSize="55dp"
+        android:layout_margin="60dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_text"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/black"
+        android:hint="Username"
+        android:padding="25dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_below="@id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_margin="15dp"
+        android:padding="25dp"
+        android:background="@color/black"
+        />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="83dp"
+        android:layout_below="@id/password"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:hint="Log in"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:onClick="transferHome"
+        />
+
+
+
+</RelativeLayout>

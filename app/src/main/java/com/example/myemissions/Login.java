@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class Login extends AppCompatActivity {
 
     EditText username, password;
-    Button loginButton;
+    Button loginButton, forgotPasswordButton, registerPageButton;
     SQLiteInterface db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,8 @@ public class Login extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login_button);
+        forgotPasswordButton = (Button) findViewById(R.id.forgotPassword_button);
+        registerPageButton = (Button) findViewById(R.id.login_signup_button);
         db = new SQLiteInterface(this);
 
         loginButton.setOnClickListener(new View.OnClickListener(){
@@ -41,6 +43,22 @@ public class Login extends AppCompatActivity {
                         startActivity(goToHomePage);
                     }
                 }
+            }
+        });
+
+        forgotPasswordButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent goToResetPassPage = new Intent(getApplicationContext(), ResetPassword.class);
+                startActivity(goToResetPassPage);
+            }
+        });
+
+        registerPageButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent goToRegisterPage = new Intent(getApplicationContext(), Register.class);
+                startActivity(goToRegisterPage);
             }
         });
     }

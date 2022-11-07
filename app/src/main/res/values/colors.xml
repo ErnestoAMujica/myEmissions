@@ -22,4 +22,11 @@
     <color name="blue">#0000FF</color>
     <color name="navy">#000080</color>
     <color name="pinkish">#d797e2</color>
+    <color name="light_gray">#949494</color>
+    <color name="lighter_gray">#ececec</color>
+    <color name="medium_gray">#545454</color>
+    <color name="dark_gray">#151515</color>
+    <color name="transparent">#00000000</color>
+    <color name="blue_gray">#3689a6</color>
+
 </resources>

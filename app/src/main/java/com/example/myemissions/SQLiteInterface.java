@@ -59,6 +59,29 @@ public class SQLiteInterface extends SQLiteOpenHelper {
             return true;
     }
 
+    //To be called when registering a user
+    public boolean changePassword(String username, String password) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues insertValues = new ContentValues();
+
+        //hash password
+        //byte[] salt = genSalt();
+        String encodedPassword = hashEncode(password);
+
+        insertValues.put("password", encodedPassword);
+        //insertValues.put("salt", salt);
+
+        String[] selectionArg = {String.valueOf(username)};
+        long result = database.update("users", insertValues, "username = ?", selectionArg);
+
+        //Will return false on insertion error
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+
     //Checks if a username already exists
     public Boolean checkUsername(String username) {
         SQLiteDatabase database = this.getWritableDatabase();

@@ -41,6 +41,7 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(Login.this, "Successful login.", Toast.LENGTH_SHORT).show();
                         Intent goToHomePage = new Intent(getApplicationContext(), Home.class);
                         startActivity(goToHomePage);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }
                 }
             }
@@ -51,6 +52,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view){
                 Intent goToResetPassPage = new Intent(getApplicationContext(), ResetPassword.class);
                 startActivity(goToResetPassPage);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
 
@@ -59,6 +61,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view){
                 Intent goToRegisterPage = new Intent(getApplicationContext(), Register.class);
                 startActivity(goToRegisterPage);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

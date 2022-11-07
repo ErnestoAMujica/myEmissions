@@ -5,8 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.security.keystore.KeyGenParameterSpec;
+import android.util.Xml;
+
 
 import androidx.annotation.Nullable;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 
 //TODO:   Implement keystore authentication either here or in the login functions
 //        to store hashed passwords instead of plaintext ones
@@ -34,7 +43,13 @@ public class SQLiteInterface extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues insertValues = new ContentValues();
         insertValues.put("username", username);
-        insertValues.put("password", password);
+
+        //hash password
+        //byte[] salt = genSalt();
+        String encodedPassword = hashEncode(password);
+
+        insertValues.put("password", encodedPassword);
+        //insertValues.put("salt", salt);
         long result = database.insert("users", null, insertValues);
 
         //Will return false on insertion error
@@ -58,10 +73,54 @@ public class SQLiteInterface extends SQLiteOpenHelper {
     //Checks for a matching username and password combination
     public Boolean checkUsernamePassword(String username, String password) {
         SQLiteDatabase database = this.getWritableDatabase();
+
+        password = hashEncode(password);
+
         Cursor search = database.rawQuery("Select * from users where username = ? and password = ?", new String[] {username,password});
         if(search.getCount() > 0)
             return true;
         else
             return false;
     }
+
+    //hash function
+    /*
+        sources: https://developer.android.com/guide/topics/security/cryptography#java
+        and https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
+    */
+    private String hashEncode(String s) {
+        String res = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] bytes = md.digest(s.getBytes());
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16)
+                        .substring(1));
+            }
+
+            res = sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    //generate salt
+//    private static byte[] genSalt() {
+//        byte[] salt = null;
+//        try {
+//            SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+//            salt = new byte[16];
+//            sr.nextBytes(salt);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return salt;
+//    }
+
+
 }

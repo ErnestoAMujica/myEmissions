@@ -17,5 +17,7 @@
             @transition/image_transform</item>
         <item name="android:windowSharedElementExitTransition">
             @transition/image_transform</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 </resources>

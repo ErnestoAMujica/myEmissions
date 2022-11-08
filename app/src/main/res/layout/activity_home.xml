@@ -1,140 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_main">
+    android:background="@color/lighter_gray">
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/vibrant_dark_blue"
+        app:cardCornerRadius="15dp"
+        android:id="@+id/mainPage_DisplayCard"
+        android:layout_width="match_parent"
+        android:layout_height="320sp"
+        android:layout_marginTop="-20sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="-30sp"
+        app:cardElevation="0dp">
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/kindablue"
+        app:cardCornerRadius="15dp"
+        android:id="@+id/mainPage_AddNewEmmissionDisplayCard"
+        android:layout_width="300sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="270sp"
+        android:layout_height="60sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="-30sp"
+        app:cardElevation="0dp">
+        <TextView
+            android:id="@+id/mainPage_emissionsAddText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-3sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:text="Add new emitting action +"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/lighter_gray"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            android:elevation="1sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="9dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/vibrant_dark_blue"
+        app:cardCornerRadius="15dp"
+        android:id="@+id/mainPage_ButtonsDisplayCard"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-30sp"
+        app:cardElevation="0dp"/>
+
+    <ImageView
+        android:background="@drawable/houseicon"
+        android:backgroundTint="@color/lighter_gray"
+        android:layout_marginBottom="30sp"
+        android:layout_marginLeft="50sp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:id="@+id/homeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textColor="@color/lighter_gray"
+        android:textSize="12sp"
+        android:gravity="end"
+        android:fontFamily="sans-serif"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="49sp"
+        android:layout_marginBottom="10sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/home_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:backgroundTint="@color/transparent"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="40sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <ImageView
+        android:background="@drawable/trendicon"
+        android:backgroundTint="@color/lighter_gray"
+        android:layout_marginBottom="30sp"
+        android:layout_marginLeft="135sp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignParentBottom="true"
+        />
+
+    <TextView
+        android:id="@+id/trendText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trends"
+        android:textColor="@color/lighter_gray"
+        android:textSize="12sp"
+        android:gravity="end"
+        android:fontFamily="sans-serif"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="130sp"
+        android:layout_marginBottom="10sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/trend_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:backgroundTint="@color/transparent"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="125sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <ImageView
+        android:background="@drawable/profileicon"
+        android:backgroundTint="@color/lighter_gray"
+        android:layout_marginBottom="30sp"
+        android:layout_marginRight="135sp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/profileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textColor="@color/lighter_gray"
+        android:textSize="12sp"
+        android:gravity="end"
+        android:fontFamily="sans-serif"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="133sp"
+        android:layout_marginBottom="10sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/profile_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:backgroundTint="@color/transparent"
+        android:layout_marginBottom="10sp"
+        android:layout_marginRight="125sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <ImageView
+        android:background="@drawable/settingsicon"
+        android:backgroundTint="@color/lighter_gray"
+        android:layout_marginBottom="30sp"
+        android:layout_marginRight="50sp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/settingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textColor="@color/lighter_gray"
+        android:textSize="12sp"
+        android:gravity="end"
+        android:fontFamily="sans-serif"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="42sp"
+        android:layout_marginBottom="10sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/settings_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:backgroundTint="@color/transparent"
+        android:layout_marginBottom="10sp"
+        android:layout_marginRight="40sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
 
     <TextView
         android:id="@+id/mainPage_name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Hi, InsertName!"
         android:textColor="@color/white"
-        android:textSize="30dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginLeft="20dp"
+        android:textSize="30sp"
+        android:gravity="left"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="60sp"
+        android:layout_marginLeft="20sp"
         android:textStyle="normal"/>
 
     <TextView
         android:id="@+id/mainPage_date"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="right"
         android:text="MM/DD/YYYY"
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginRight="50dp"
+        android:layout_alignParentRight="true"
         android:textStyle="normal"
+        android:fontFamily="sans-serif-light"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="9dp" />
 
-    <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@color/pinkish"
-        app:cardCornerRadius="20dp"
-        android:id="@+id/mainPage_emissionsDisplayCard"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="500dp"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="55dp"
-        app:cardElevation="0dp"/>
+    <ImageView
+        android:background="@drawable/downarrowicon"
+        android:backgroundTint="@color/lighter_gray"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="225dp"
+        android:layout_marginRight="30dp"
+        />
 
     <TextView
         android:id="@+id/mainPage_emissionsDisplayText1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Average emissions today"
-        android:textColor="@color/white"
-        android:textSize="20dp"
+        android:text="Today's emissions"
+        android:textColor="@color/lighter_gray"
+        android:textSize="13dp"
         android:textStyle="normal"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="600dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="40dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="9dp" />
 
     <TextView
         android:id="@+id/mainPage_emissionsDisplayText2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="42sp"
+        android:layout_marginTop="220dp"
+        android:gravity="left"
+        android:fontFamily="sans-serif-light"
         android:text="kg of CO2"
-        android:textColor="@color/white"
+        android:textColor="@color/lighter_gray"
         android:textSize="20dp"
         android:textStyle="normal"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="400dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="9dp" />
 
     <TextView
         android:id="@+id/mainPage_emissionsDisplayNumber"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40sp"
+        android:layout_marginTop="160dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="left"
         android:text="0.00"
-        android:textColor="@color/white"
-        android:textSize="50dp"
+        android:textColor="@color/lighter_gray"
+        android:textSize="50sp"
         android:textStyle="normal"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="500dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="9dp" />
 
-    <Button
-        android:id="@+id/mainPage_emissionsAddButton"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginBottom="400dp"
-        android:layout_below="@id/mainPage_emissionsDisplayText2"
-        android:background="?android:attr/selectableItemBackground"
-        />
 
-    <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@color/pinkish"
-        app:cardCornerRadius="20dp"
-        android:id="@+id/mainPage_emissionsAddCard"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginBottom="420dp"
-        app:cardElevation="0dp"/>
-
-    <TextView
-        android:id="@+id/mainPage_emissionsAddText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Add emitting action"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="normal"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="240dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="9dp" />
-
-    <ImageView
-        android:background="@drawable/addicon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="280dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginBottom="430dp"
-        />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

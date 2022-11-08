@@ -9,9 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class Login extends AppCompatActivity {
 
-    EditText username, password;
+    EditText username;
+    TextInputEditText password;
     Button loginButton, forgotPasswordButton, registerPageButton;
     SQLiteInterface db;
     @Override
@@ -20,7 +23,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
+        password = (TextInputEditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login_button);
         forgotPasswordButton = (Button) findViewById(R.id.forgotPassword_button);
         registerPageButton = (Button) findViewById(R.id.login_signup_button);

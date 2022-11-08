@@ -74,12 +74,11 @@
         android:layout_marginBottom="40dp"
         android:hint="Your username"
         android:fontFamily="serif"
-        android:paddingLeft="0dp"
+        android:paddingLeft="15dp"
         android:paddingRight="25dp"
         android:paddingTop="10dp"
         android:paddingBottom="15dp"
         android:textSize="16sp"
-        android:textColor="@color/light_gray"
         android:textColorHint="@color/light_gray" />
 
     <TextView
@@ -97,33 +96,39 @@
         android:gravity="left"
         />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_below="@id/password_text"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="40dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PasswordLayout"
         android:layout_width="match_parent"
-        android:layout_height="42sp"
-        android:gravity="left"
-        android:hint="Your password"
-        android:fontFamily="serif"
-        android:textSize="16sp"
-        android:textColor="@color/light_gray"
+        android:layout_height="70sp"
+        android:layout_below="@id/password_text"
         android:textColorHint="@color/light_gray"
-        android:paddingLeft="0dp"
-        android:paddingRight="25dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="15dp"
-        />
+        app:passwordToggleEnabled="true"
+        app:hintEnabled="false"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_below="@id/password_text"
+            android:layout_marginTop="-15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/transparent"
+            android:layout_height="53sp"
+            android:gravity="left"
+            android:hint="Your password"
+            android:fontFamily="serif"
+            android:textSize="16sp"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/forgotPassword_button"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_below="@id/password"
+        android:layout_below="@id/PasswordLayout"
         android:layout_marginLeft="100dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="-40dp"
@@ -141,7 +146,7 @@
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="53dp"
-        android:layout_below="@id/password"
+        android:layout_below="@id/PasswordLayout"
         android:backgroundTint="@color/dark_gray"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="18dp"

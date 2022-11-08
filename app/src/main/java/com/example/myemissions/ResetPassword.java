@@ -8,12 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ResetPassword extends AppCompatActivity {
 
-    EditText username, password, retypedPassword;
+    EditText username;
+    TextInputEditText password, retypedPassword;
     Button resetPassword, goToLogin;
     SQLiteInterface db;
 
@@ -22,8 +26,8 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
         username = (EditText) findViewById(R.id.resetpassword_username);
-        password = (EditText) findViewById(R.id.resetpassword_password);
-        retypedPassword = (EditText) findViewById(R.id.password_retype);
+        password = (TextInputEditText) findViewById(R.id.resetpassword_password);
+        retypedPassword = (TextInputEditText) findViewById(R.id.password_retype);
         resetPassword = (Button) findViewById(R.id.resetpassword_button);
         goToLogin = (Button) findViewById(R.id.resetpassword_button_GoToLogin);
         db = new SQLiteInterface(this);

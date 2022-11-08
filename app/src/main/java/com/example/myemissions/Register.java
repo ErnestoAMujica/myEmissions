@@ -9,12 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
 
-    EditText username, password, retypedPassword;
+    EditText username;
+    TextInputEditText password, retypedPassword;
     Button register, goToLogin;
     SQLiteInterface db;
 
@@ -23,8 +27,8 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         username = (EditText) findViewById(R.id.register_username);
-        password = (EditText) findViewById(R.id.register_password);
-        retypedPassword = (EditText) findViewById(R.id.password_retype);
+        password = (TextInputEditText) findViewById(R.id.register_password);
+        retypedPassword = (TextInputEditText) findViewById(R.id.password_retype);
         register = (Button) findViewById(R.id.register_button);
         goToLogin = (Button) findViewById(R.id.register_goToLogin_button);
         db = new SQLiteInterface(this);

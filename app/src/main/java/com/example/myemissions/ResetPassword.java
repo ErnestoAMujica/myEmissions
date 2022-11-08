@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ResetPassword extends AppCompatActivity {
 
@@ -37,19 +39,32 @@ public class ResetPassword extends AppCompatActivity {
                 if(user.equals("") || pass.equals("") || retypedPass.equals(""))
                     Toast.makeText(ResetPassword.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
                 else {
-                    if(!pass.equals(retypedPass))
-                        Toast.makeText(ResetPassword.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
-                    else {
-                        if (!db.checkUsername(user))
-                            Toast.makeText(ResetPassword.this, "User does not exist.", Toast.LENGTH_LONG).show();
+
+                    Pattern letter = Pattern.compile("[a-zA-z]");
+                    Pattern digit = Pattern.compile("[0-9]");
+                    Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+                    Matcher hasLetter = letter.matcher(pass);
+                    Matcher hasDigit = digit.matcher(pass);
+                    Matcher hasSpecial = special.matcher(pass);
+
+                    if(pass.length() < 8 || !hasLetter.find() || !hasDigit.find() || !hasSpecial.find())
+                        Toast.makeText(ResetPassword.this, "Password must be longer than 8 characters and must contain a letter, number, and special character.", Toast.LENGTH_LONG).show();
+                    else
+                    {
+                        if(!pass.equals(retypedPass))
+                            Toast.makeText(ResetPassword.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
                         else {
-                            if (!db.changePassword(user, pass))
-                                Toast.makeText(ResetPassword.this, "ERROR: User \"" + user + "\" has failed to change password.", Toast.LENGTH_LONG).show();
+                            if (!db.checkUsername(user))
+                                Toast.makeText(ResetPassword.this, "User does not exist.", Toast.LENGTH_LONG).show();
                             else {
-                                Toast.makeText(ResetPassword.this, "User \"" + user + "\" has successfully changed their password.", Toast.LENGTH_LONG).show();
-                                Intent goToLogin = new Intent(getApplicationContext(), Login.class);
-                                startActivity(goToLogin);
-                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                if (!db.changePassword(user, pass))
+                                    Toast.makeText(ResetPassword.this, "ERROR: User \"" + user + "\" has failed to change password.", Toast.LENGTH_LONG).show();
+                                else {
+                                    Toast.makeText(ResetPassword.this, "User \"" + user + "\" has successfully changed their password.", Toast.LENGTH_LONG).show();
+                                    Intent goToLogin = new Intent(getApplicationContext(), Login.class);
+                                    startActivity(goToLogin);
+                                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                }
                             }
                         }
                     }

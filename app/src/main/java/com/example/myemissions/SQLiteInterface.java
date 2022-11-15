@@ -56,7 +56,7 @@ public class SQLiteInterface extends SQLiteOpenHelper {
             return true;
     }
 
-    //To be called when registering a user
+    //To be called when resetting a user's password
     public boolean changePassword(String username, String password) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues insertValues = new ContentValues();

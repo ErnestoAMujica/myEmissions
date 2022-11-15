@@ -28,7 +28,7 @@
         android:layout_height="60sp"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="-30sp"
-        app:cardElevation="0dp">
+        app:cardElevation="0sp">
         <TextView
             android:id="@+id/mainPage_emissionsAddText"
             android:layout_width="wrap_content"
@@ -40,12 +40,126 @@
             android:text="Add new emitting action +"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/lighter_gray"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="normal"
             android:elevation="1sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="9dp" />
     </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="270sp"
+        android:layout_marginBottom="50sp"
+        android:elevation="-1sp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Emissions"
+                android:textColor="@color/medium_gray"
+                android:textSize="18sp"
+                android:gravity="end"
+                android:fontFamily="sans-serif-light"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="40sp"
+                android:layout_marginTop="80sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See all >"
+                android:textColor="@color/blue_gray"
+                android:textSize="18sp"
+                android:gravity="end"
+                android:fontFamily="sans-serif-light"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40sp"
+                android:layout_marginTop="80sp"
+                android:textStyle="bold"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview1"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="15dp"
+                android:layout_width="360sp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="70sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="120sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Traveled 5 miles in car"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="18sp"
+                    android:gravity="end"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="10sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nov 9 - 10:12 AM"
+                    android:textColor="@color/light_gray"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="40sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nov 9 - 10:12 AM"
+                    android:textColor="@color/light_gray"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="40sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+ .75 kg"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="20sp"
+                    android:gravity="end"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="260sp"
+                    android:layout_marginTop="20sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
 
     <androidx.cardview.widget.CardView
         app:cardBackgroundColor="@color/vibrant_dark_blue"
@@ -213,7 +327,7 @@
         android:id="@+id/mainPage_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hi, InsertName!"
+        android:text="Hi, SampleName!"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:gravity="left"
@@ -227,7 +341,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:text="MM/DD/YYYY"
+        android:text="11/9/2022"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:layout_marginTop="220dp"
@@ -289,7 +403,7 @@
         android:layout_marginTop="160dp"
         android:fontFamily="sans-serif-light"
         android:gravity="left"
-        android:text="0.00"
+        android:text="8.57"
         android:textColor="@color/lighter_gray"
         android:textSize="50sp"
         android:textStyle="normal"

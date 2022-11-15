@@ -17,9 +17,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
-//TODO:   Implement keystore authentication either here or in the login functions
-//        to store hashed passwords instead of plaintext ones
-
 public class SQLiteInterface extends SQLiteOpenHelper {
 
     public static final String DATABASENAME = "Users.db";

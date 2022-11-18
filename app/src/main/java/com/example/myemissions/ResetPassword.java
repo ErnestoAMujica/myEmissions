@@ -1,0 +1,104 @@
+package com.example.myemissions;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ResetPassword extends AppCompatActivity {
+
+    EditText username;
+    TextInputEditText password, retypedPassword;
+    Button resetPassword, goToLogin;
+    SQLiteInterface db;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_resetpassword);
+        WindowInsetsControllerCompat windowInsetsController = ViewCompat.getWindowInsetsController(getWindow().getDecorView());
+        windowInsetsController.setSystemBarsBehavior(
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        );
+        windowInsetsController.hide(WindowInsetsCompat.Type.statusBars());
+
+        username = (EditText) findViewById(R.id.resetpassword_username);
+        password = (TextInputEditText) findViewById(R.id.resetpassword_password);
+        retypedPassword = (TextInputEditText) findViewById(R.id.password_retype);
+        resetPassword = (Button) findViewById(R.id.resetpassword_button);
+        goToLogin = (Button) findViewById(R.id.resetpassword_button_GoToLogin);
+        db = new SQLiteInterface(this);
+
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+                String retypedPass = retypedPassword.getText().toString();
+
+                //Checking for blank input fields
+                if(user.equals("") || pass.equals("") || retypedPass.equals(""))
+                    Toast.makeText(ResetPassword.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
+                else {
+
+                    Pattern letter = Pattern.compile("[a-zA-z]");
+                    Pattern digit = Pattern.compile("[0-9]");
+                    Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+                    Matcher hasLetter = letter.matcher(pass);
+                    Matcher hasDigit = digit.matcher(pass);
+                    Matcher hasSpecial = special.matcher(pass);
+
+                    if(pass.length() < 8 || !hasLetter.find() || !hasDigit.find() || !hasSpecial.find())
+                        Toast.makeText(ResetPassword.this, "Password must be longer than 8 characters and must contain a letter, number, and special character.", Toast.LENGTH_LONG).show();
+                    else
+                    {
+                        if(!pass.equals(retypedPass))
+                            Toast.makeText(ResetPassword.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+                        else {
+                            if (!db.checkUsername(user))
+                                Toast.makeText(ResetPassword.this, "User does not exist.", Toast.LENGTH_LONG).show();
+                            else {
+                                if (!db.changePassword(user, pass))
+                                    Toast.makeText(ResetPassword.this, "ERROR: User \"" + user + "\" has failed to change password.", Toast.LENGTH_LONG).show();
+                                else {
+                                    Toast.makeText(ResetPassword.this, "User \"" + user + "\" has successfully changed their password.", Toast.LENGTH_LONG).show();
+                                    Intent goToLogin = new Intent(getApplicationContext(), Login.class);
+                                    startActivity(goToLogin);
+                                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        goToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToLogin = new Intent(getApplicationContext(), Login.class);
+                startActivity(goToLogin);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+    }
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+}

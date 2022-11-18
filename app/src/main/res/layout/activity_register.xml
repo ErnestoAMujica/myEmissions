@@ -4,89 +4,214 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".Home"
+    android:background="@drawable/background_login">
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/lighter_gray"
+        app:cardCornerRadius="20dp"
+        android:id="@+id/register_DisplayCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="0dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="55dp"
+        app:cardElevation="0dp"/>
+
+    <ImageView
+        android:background="@drawable/appicontransparent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        />
 
     <TextView
         android:id="@+id/register_registerText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:textColor="@color/purple_200"
-        android:textSize="55dp"
-        android:layout_margin="60dp"
+        android:text="Sign up"
+        android:fontFamily="serif"
+        android:textColor="@color/dark_gray"
+        android:textSize="40sp"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="25dp"
         android:textStyle="bold"
-        android:gravity="center"
+        android:gravity="left"
+        />
+
+    <TextView
+        android:id="@+id/username_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_registerText"
+        android:text="Username"
+        android:fontFamily="serif"
+        android:textColor="@color/medium_gray"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:textStyle="bold"
+        android:gravity="left"
         />
 
     <EditText
         android:id="@+id/register_username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/register_registerText"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@color/black"
-        android:hint="Username"
-        android:padding="25dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:layout_height="42sp"
+        android:layout_below="@id/username_text"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:hint="Your username"
+        android:fontFamily="serif"
+        android:paddingLeft="15dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp"
+        android:textSize="16sp"
+        android:textColorHint="@color/light_gray" />
 
-    <EditText
-        android:id="@+id/register_password"
+    <TextView
+        android:id="@+id/password_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/register_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_margin="15dp"
-        android:padding="25dp"
-        android:background="@color/black"
+        android:text="Password"
+        android:fontFamily="serif"
+        android:textColor="@color/medium_gray"
+        android:textSize="20sp"
+        android:layout_marginTop="-28dp"
+        android:layout_marginLeft="40dp"
+        android:textStyle="bold"
+        android:gravity="left"
         />
 
-    <EditText
-        android:id="@+id/password_retype"
-        android:layout_below="@id/register_password"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/register_PasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:layout_below="@id/password_text"
+        android:textColorHint="@color/light_gray"
+        app:passwordToggleEnabled="true"
+        app:hintEnabled="false"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_password"
+            android:layout_marginTop="-15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/transparent"
+            android:layout_height="53sp"
+            android:gravity="left"
+            android:hint="Your password"
+            android:fontFamily="serif"
+            android:textSize="16sp"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/retypepassword_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Reenter Password"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_margin="15dp"
-        android:padding="25dp"
-        android:background="@color/black"
+        android:layout_below="@id/register_PasswordLayout"
+        android:text="Retype Password"
+        android:fontFamily="serif"
+        android:textColor="@color/medium_gray"
+        android:textSize="20sp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginLeft="40dp"
+        android:textStyle="bold"
+        android:gravity="left"
         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/register_RetypePasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:layout_below="@id/retypepassword_text"
+        android:textColorHint="@color/light_gray"
+        app:passwordToggleEnabled="true"
+        app:hintEnabled="false"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_retype"
+            android:layout_marginTop="-15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/transparent"
+            android:layout_height="53sp"
+            android:gravity="left"
+            android:hint="Retype password"
+            android:fontFamily="serif"
+            android:textSize="16sp"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="83dp"
-        android:layout_below="@id/password_retype"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_below="@id/register_RetypePasswordLayout"
+        android:backgroundTint="@color/dark_blue"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="80dp"
         android:layout_marginBottom="24dp"
         android:hint="Register"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:onClick="transferLogin"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:textColor="@color/lighter_gray"
+        android:textSize="18sp"
+        android:textColorHint="@color/lighter_gray"
+        />
+
+    <TextView
+        android:id="@+id/register_login_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_button"
+        android:text="Already have an account?"
+        android:fontFamily="serif"
+        android:textColor="@color/medium_gray"
+        android:textSize="16sp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="70dp"
+        android:textStyle="normal"
+        android:gravity="left"
         />
 
     <Button
-        android:id="@+id/register_button_GoToLogin"
+        android:id="@+id/register_goToLogin_button"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
-        android:layout_height="83dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/register_button"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="30dp"
-        android:hint="Go to login page"
-        android:onClick="transferLogin"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
-
+        android:layout_toRightOf="@id/register_login_text"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="00dp"
+        android:backgroundTint="@color/transparent"
+        android:fontFamily="serif"
+        android:gravity="right"
+        android:hint="Log in!"
+        android:textColorHint="@color/blue_gray"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        />
 
 </RelativeLayout>

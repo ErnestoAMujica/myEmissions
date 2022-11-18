@@ -22,4 +22,16 @@
     <color name="blue">#0000FF</color>
     <color name="navy">#000080</color>
     <color name="pinkish">#d797e2</color>
+    <color name="light_gray">#949494</color>
+    <color name="lighter_gray">#ececec</color>
+    <color name="medium_gray">#545454</color>
+    <color name="dark_gray">#151515</color>
+    <color name="transparent">#00000000</color>
+    <color name="blue_gray">#3689a6</color>
+    <color name="dark_blue">#2e435e</color>
+    <color name="vibrant_dark_blue">#092854</color>
+    <color name="lighter_blue_gray">#565a6e</color>
+    <color name="pinkpurpleish">#d731ff</color>
+    <color name="kindablue">#4b62fe</color>
+
 </resources>

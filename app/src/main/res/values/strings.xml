@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">MyEmissions</string>
+    <string name="settings">Settings</string>
+    <string name="delete_accout">Delete Account</string>
+    <string name = "delete_account_confirmation">Are you sure you want to delete your account?</string>
+    <string name="delete_account_confirmation_yes">Yes</string>
+    <string name="delete_account_confirmation_no">No</string>
+    <string name="delete_account_confirmation_title">Delete Account</string>
+    <string name = "delete_data_confirmation">Are you sure you want to delete your data?</string>
+    <string name="delete_data_confirmation_yes">Yes</string>
+    <string name="delete_data_confirmation_no">No</string>
+    <string name="delete_data_confirmation_title">Delete Data</string>
+    <string name= "change_username">Change Username</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_email">Change Email</string>
+    <string name = "change_username_confirmation">Are you sure you want to change your username?</string>
+    <string name="change_username_confirmation_yes">Yes</string>
+    <string name="change_username_confirmation_no">No</string>
+    <string name="change_username_confirmation_title">Change Username</string>
+    <string name = "change_password_confirmation">Are you sure you want to change your password?</string>
+    <string name="change_password_confirmation_yes">Yes</string>
+    <string name="change_password_confirmation_no">No</string>
+    <string name="change_password_confirmation_title">Change Password</string>
 </resources>

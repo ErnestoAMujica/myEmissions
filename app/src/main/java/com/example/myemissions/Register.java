@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,6 +24,7 @@ public class Register extends AppCompatActivity {
     EditText username;
     TextInputEditText password, retypedPassword;
     Button register, goToLogin;
+    TextView errorText;
     SQLiteInterface db;
 
     @Override
@@ -40,6 +42,7 @@ public class Register extends AppCompatActivity {
         retypedPassword = (TextInputEditText) findViewById(R.id.password_retype);
         register = (Button) findViewById(R.id.register_button);
         goToLogin = (Button) findViewById(R.id.register_goToLogin_button);
+        errorText = (TextView) findViewById(R.id.error_text);
         db = new SQLiteInterface(this);
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -51,27 +54,39 @@ public class Register extends AppCompatActivity {
 
                 //Checking for blank input fields
                 if(user.equals("") || pass.equals("") || retypedPass.equals(""))
+                {
                     Toast.makeText(Register.this, "Please fill out all fields.", Toast.LENGTH_LONG).show();
+                    errorText.setText("");
+                }
                 else {
 
                     Pattern letter = Pattern.compile("[a-zA-z]");
                     Pattern digit = Pattern.compile("[0-9]");
                     Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+                    Pattern illegal = Pattern.compile ("[ ;\"]");
                     Matcher hasLetter = letter.matcher(pass);
                     Matcher hasDigit = digit.matcher(pass);
                     Matcher hasSpecial = special.matcher(pass);
+                    Matcher userHasIllegal = illegal.matcher(user);
+                    Matcher passHasIllegal = illegal.matcher(pass);
 
                     if(pass.length() < 8 || !hasLetter.find() || !hasDigit.find() || !hasSpecial.find())
-                        Toast.makeText(Register.this, "Password must be longer than 8 characters and must contain a letter, number, and special character.", Toast.LENGTH_LONG).show();
+                    {
+                        errorText.setText("Password must be longer than 8 characters and must contain a letter, number, and special character.");
+                    }
+                    else if(userHasIllegal.find() || passHasIllegal.find())
+                        errorText.setText("Username or password contains an illegal character such as a whitespace character, quotation mark, or semicolon.");
+                    else if(pass.length() > 32 || user.length() > 32)
+                        errorText.setText("Username and password must not exceed 32 characters.");
                     else
                     {
                         if(!pass.equals(retypedPass))
-                            Toast.makeText(Register.this, "Passwords do not match.", Toast.LENGTH_LONG).show();
+                            errorText.setText("Passwords do not match.");
                         else {
                             if (db.checkUsername(user))
-                                Toast.makeText(Register.this, "User is already registered.", Toast.LENGTH_LONG).show();
+                                errorText.setText("User is already registered.");
                             else {
-
+                                errorText.setText("");
                                 if (!db.insertData(user, pass))
                                     Toast.makeText(Register.this, "ERROR: User \"" + user + "\" has not been registered.", Toast.LENGTH_LONG).show();
                                 else {

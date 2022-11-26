@@ -117,7 +117,8 @@
             android:hint="Your password"
             android:fontFamily="serif"
             android:textSize="16sp"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -189,7 +190,7 @@
         android:fontFamily="serif"
         android:textColor="@color/medium_gray"
         android:textSize="16sp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-10dp"
         android:layout_marginLeft="70dp"
         android:textStyle="normal"
         android:gravity="left"
@@ -203,7 +204,7 @@
         android:layout_below="@id/register_button"
         android:layout_toRightOf="@id/register_login_text"
         android:layout_marginLeft="-10dp"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="-20dp"
         android:layout_marginRight="00dp"
         android:backgroundTint="@color/transparent"
         android:fontFamily="serif"
@@ -213,5 +214,23 @@
         android:textSize="16sp"
         android:textStyle="normal"
         />
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_login_text"
+        android:text=""
+        android:fontFamily="serif"
+        android:textColor="@color/pastelred"
+        android:textSize="13sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        android:textStyle="normal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        />
+
+
 
 </RelativeLayout>

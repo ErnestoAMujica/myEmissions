@@ -51,6 +51,7 @@ public class Login extends AppCompatActivity {
                     else{
                         Toast.makeText(Login.this, "Successful login.", Toast.LENGTH_SHORT).show();
                         Intent goToHomePage = new Intent(getApplicationContext(), Home.class);
+                        goToHomePage.putExtra("username", user);
                         startActivity(goToHomePage);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }

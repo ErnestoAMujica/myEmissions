@@ -1,9 +1,8 @@
 package com.example.myemissions;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.KeyEvent;
@@ -11,10 +10,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,8 +18,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import java.text.DecimalFormat;
 
 public class AddEmission extends AppCompatActivity{
 
@@ -35,10 +28,20 @@ public class AddEmission extends AppCompatActivity{
     EmissionCalculator.Source type;
     CardView addButton;
 
+    String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_emission);
+        setContentView(R.layout.activity_addemission);
+
+        Bundle extras = getIntent().getExtras();
+        try {
+            username = extras.getString("username", "SampleName");
+        }
+        catch (Exception e){
+            username = "TestUser";
+        }
 
         //page content
         EmissionCalculator calc = new EmissionCalculator();
@@ -297,6 +300,8 @@ public class AddEmission extends AppCompatActivity{
             }
         });
 
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -304,8 +309,7 @@ public class AddEmission extends AppCompatActivity{
         Bundle extras = getIntent().getExtras();
         try {
             username = extras.getString("username", "SampleName");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             username = "TestUser";
         }
 

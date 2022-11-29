@@ -297,5 +297,21 @@ public class AddEmission extends AppCompatActivity{
             }
         });
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Bundle extras = getIntent().getExtras();
+        try {
+            username = extras.getString("username", "SampleName");
+        }
+        catch (Exception e){
+            username = "TestUser";
+        }
+
+        Intent goToHomePage = new Intent(getApplicationContext(), Home.class);
+        goToHomePage.putExtra("username", username);
+        startActivity(goToHomePage);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

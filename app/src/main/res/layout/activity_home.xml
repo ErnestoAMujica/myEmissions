@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         app:cardBackgroundColor="@color/vibrant_dark_blue"
         app:cardCornerRadius="15dp"
-        android:id="@+id/mainPage_DisplayCard"
+        android:id="@+id/emission_card"
         android:layout_width="match_parent"
         android:layout_height="320sp"
         android:layout_marginTop="-20sp"
@@ -28,7 +28,8 @@
         android:layout_height="60sp"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="-30sp"
-        app:cardElevation="0sp">
+        app:cardElevation="0sp"
+        android:clickable="true">
         <TextView
             android:id="@+id/mainPage_emissionsAddText"
             android:layout_width="wrap_content"

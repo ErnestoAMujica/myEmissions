@@ -43,6 +43,48 @@ public class EmissionCalculator {
         }
     }
 
+    public enum SourceName {
+        //transportation (kgCO2e/mile)
+        taxi("Taxi"),
+        bus("Bus"),
+        train("Train"),
+
+//        diesel_large(),
+//        hybrid_large(),
+//        hybrid_plugin_large(),
+//        gas_large(),
+//        electric_large(),
+        diesel_medium("Diesel Car"),
+        hybrid_medium("Hybrid Car"),
+//        hybrid_plugin_medium(),
+        gas_medium("Car"),
+        electric_medium("Electric Car"),
+//        diesel_small(),
+//        hybrid_small(),
+//        hybrid_plugin_small(),
+//        gas_small(),
+//        electric_small(),
+
+//        business_longhaul(),
+//        economy_longhaul(),
+//        economyplus_longhaul(),
+//        first_longhaul(),
+//        business_shorthaul(),
+//        economy_shorthaul(),
+
+        //Utilities
+        //kgCO2e/kwh
+        energy("Energy"),
+        //kgCO2e/therm
+        natural_gas("Natural Gas");
+
+        public final String emissionName;
+
+        SourceName(String passedInName) {
+            this.emissionName = passedInName;
+        }
+    }
+
     public double transportation(Source source, double miles) {
         return source.value * miles;
     }
@@ -54,4 +96,5 @@ public class EmissionCalculator {
     public double natural_gas(double therms) {
         return Source.natural_gas.value * therms;
     }
+
 }

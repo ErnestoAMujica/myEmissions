@@ -78,8 +78,7 @@ public class Login extends AppCompatActivity {
         });
     }
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
         finish();

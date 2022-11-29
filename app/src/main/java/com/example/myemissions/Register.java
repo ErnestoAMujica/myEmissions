@@ -5,7 +5,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -55,8 +54,7 @@ public class Register extends AppCompatActivity {
                 //Checking for blank input fields
                 if(user.equals("") || pass.equals("") || retypedPass.equals(""))
                 {
-                    Toast.makeText(Register.this, "Please fill out all fields.", Toast.LENGTH_LONG).show();
-                    errorText.setText("");
+                    errorText.setText("Please fill out all fields.");
                 }
                 else {
 

@@ -41,7 +41,7 @@ public class ResetPassword extends AppCompatActivity {
         retypedPassword = (TextInputEditText) findViewById(R.id.password_retype);
         resetPassword = (Button) findViewById(R.id.resetpassword_button);
         goToLogin = (Button) findViewById(R.id.resetpassword_button_GoToLogin);
-        errorText = (TextView) findViewById(R.id.error_text);
+        errorText = (TextView) findViewById(R.id.resetpassword_error_text);
         db = new SQLiteInterface(this);
 
         resetPassword.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +54,7 @@ public class ResetPassword extends AppCompatActivity {
                 //Checking for blank input fields
                 if(user.equals("") || pass.equals("") || retypedPass.equals(""))
                 {
-                    Toast.makeText(ResetPassword.this, "Please fill out all fields.", Toast.LENGTH_SHORT).show();
-                    errorText.setText("");
+                    errorText.setText("Please fill out all fields.");
                 }
                 else {
 

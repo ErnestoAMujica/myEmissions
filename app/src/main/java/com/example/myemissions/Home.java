@@ -31,9 +31,12 @@ public class Home extends AppCompatActivity {
 
     String username;
     TextView emissionsTotal, usernameDisplay, currentDate;
+
+    CardView addEmissionAction;
     FileInterface emissions;
     Button addEmissionsButton;
     @SuppressLint("SetTextI18n")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,7 @@ public class Home extends AppCompatActivity {
         emissionsTotal = (TextView) findViewById(R.id.mainPage_emissionsDisplayNumber);
         usernameDisplay = (TextView) findViewById(R.id.mainPage_name);
         currentDate = (TextView) findViewById(R.id.mainPage_date);
+        addEmissionAction = findViewById(R.id.mainPage_AddNewEmmissionDisplayCard);
 
         String currentDateString = java.text.DateFormat.getDateInstance(DateFormat.SHORT).format(Calendar.getInstance().getTime());
         currentDate.setText(currentDateString);
@@ -173,6 +177,15 @@ public class Home extends AppCompatActivity {
                 Intent goToAddEmissionsPage = new Intent(getApplicationContext(), AddEmission.class);
                 goToAddEmissionsPage.putExtra("username", username);
                 startActivity(goToAddEmissionsPage);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+        addEmissionAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToAddEmission = new Intent(getApplicationContext(), AddEmission.class);
+                startActivity(goToAddEmission);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });

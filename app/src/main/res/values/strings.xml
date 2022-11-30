@@ -1,35 +1,70 @@
 <resources>
     <string name="app_name">MyEmissions</string>
     <string name="settings">Settings</string>
-
-    <string name="delete_account">Delete Account</string>
-    <string name="delete_account_summary">Delete your account</string>
-    <string-array name="delete_account_entries">
-        <item>Yes</item>
-        <item>No</item>
-    </string-array>
-    <string-array name="delete_account_values">
-        <item>yes</item>
-        <item>no</item>
-    </string-array>
-    <string name="delete_data">Delete Data</string>
-    <string name="delete_data_summary">Delete your data</string>
-    <string-array name="delete_data_entries">
-        <item>Yes</item>
-        <item>No</item>
-    </string-array>
-    <string-array name="delete_data_values">
-        <item>yes</item>
-        <item>no</item>
-    </string-array>
+    <string name="delete_accout">Delete Account</string>
+    <string name="delete_account_confirmation">Are you sure you want to delete your account?</string>
+    <string name="delete_account_confirmation_yes">Yes</string>
+    <string name="delete_account_confirmation_no">No</string>
+    <string name="delete_account_confirmation_title">Delete Account</string>
+    <string name="delete_data_confirmation">Are you sure you want to delete your data?</string>
+    <string name="delete_data_confirmation_yes">Yes</string>
+    <string name="delete_data_confirmation_no">No</string>
+    <string name="delete_data_confirmation_title">Delete Data</string>
+    <string name="change_username">Change Username</string>
     <string name="change_password">Change Password</string>
-    <string name="change_password_summary">Change your password</string>
-    <string-array name="change_password_entries">
-        <item>Yes</item>
-        <item>No</item>
+    <string name="change_email">Change Email</string>
+    <string name="change_username_confirmation">Are you sure you want to change your username?</string>
+    <string name="change_username_confirmation_yes">Yes</string>
+    <string name="change_username_confirmation_no">No</string>
+    <string name="change_username_confirmation_title">Change Username</string>
+    <string name="change_password_confirmation">Are you sure you want to change your password?</string>
+    <string name="change_password_confirmation_yes">Yes</string>
+    <string name="change_password_confirmation_no">No</string>
+    <string name="change_password_confirmation_title">Change Password</string>
+    <string name="title_activity_add_emission">AddEmission</string>
+    <string name="emission_count">0.00</string>
+    <string name="type">Source</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="unit">kgCO2e</string>
+    <string name="usage">Enter Usage in Miles</string>
+    <string name="usageE">Enter Usage in Kilowatt Hours</string>
+    <string name="usageN">Enter Usage in Therms</string>
+    <string-array name="source_items">
+        <item>- Select Emission Source -</item>
+        <item>Transportation</item>
+        <item>Energy</item>
+        <item>Natural Gas</item>
     </string-array>
-    <string-array name="change_password_values">
-        <item>yes</item>
-        <item>no</item>
+    <string-array name="transportation_items">
+        <item>- Select Transportation Type -</item>
+        <item>Personal Vehicle</item>
+        <item>Taxi</item>
+        <item>Bus</item>
+        <item>Train</item>
+        <item>Plane</item>
+    </string-array>
+    <string-array name="vehicle_types">
+        <item>- Select Vehicle Type -</item>
+        <item>Diesel</item>
+        <item>Gas</item>
+        <item>Hybrid</item>
+        <item>Hybrid Plugin</item>
+        <item>Electric</item>
+    </string-array>
+    <string-array name="vehicle_sizes">
+        <item>- Select Vehicle Size -</item>
+        <item>Large</item>
+        <item>Medium</item>
+        <item>Small</item>
+    </string-array>
+    <string-array name="flight_type">
+        <item>- Select Flight Type -</item>
+        <item>Short-haul - Economy</item>
+        <item>Short-haul - Business</item>
+        <item>Long-haul - Economy</item>
+        <item>Long-haul - Economy Plus</item>
+        <item>Long-haul - Business</item>
+        <item>Long-haul - First Class</item>
     </string-array>
 </resources>

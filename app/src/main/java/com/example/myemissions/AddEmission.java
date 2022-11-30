@@ -92,6 +92,7 @@ public class AddEmission extends AppCompatActivity{
              public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                  item = (String) adapterView.getItemAtPosition(i);
                  usage.setText("");
+                 type = null;
 
                  if (item.equals("Transportation")) {
                      method.setVisibility(View.VISIBLE);
@@ -129,6 +130,7 @@ public class AddEmission extends AppCompatActivity{
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 item = (String) adapterView.getItemAtPosition(i);
                 usage.setText("");
+                type = null;
 
                 if (item.equals("Personal Vehicle")) {
                     method2.setVisibility(View.VISIBLE);
@@ -170,8 +172,9 @@ public class AddEmission extends AppCompatActivity{
         method2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = (String) adapterView.getItemAtPosition(i);
+                item = (String) adapterView.getItemAtPosition(i);
                 usage.setText("");
+                type = null;
 
                 if (item.equals("Short-haul - Economy")) {
                     usage.setVisibility(View.VISIBLE);
@@ -214,6 +217,7 @@ public class AddEmission extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String sz = (String) adapterView.getItemAtPosition(i);
+                type = null;
 
                 if (sz.equals("- Select Vehicle Size -")) {
                     usage.setVisibility(View.GONE);

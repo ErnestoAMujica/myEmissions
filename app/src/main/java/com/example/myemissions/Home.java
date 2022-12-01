@@ -8,12 +8,14 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -31,9 +33,15 @@ public class Home extends AppCompatActivity {
 
     String username;
     TextView emissionsTotal, usernameDisplay, currentDate;
+
+    CardView addEmissionAction;
     FileInterface emissions;
     Button addEmissionsButton;
+
+    DatePickerDialog datePicker;
+    Button profileButton;
     @SuppressLint("SetTextI18n")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +62,14 @@ public class Home extends AppCompatActivity {
         }
 
         addEmissionsButton = (Button) findViewById(R.id.mainPage_addEmissionsButton);
+        profileButton = (Button) findViewById(R.id.profile_button);
 
         final float scale = getResources().getDisplayMetrics().scaledDensity;
 
         emissionsTotal = (TextView) findViewById(R.id.mainPage_emissionsDisplayNumber);
         usernameDisplay = (TextView) findViewById(R.id.mainPage_name);
         currentDate = (TextView) findViewById(R.id.mainPage_date);
+        addEmissionAction = findViewById(R.id.mainPage_AddNewEmmissionDisplayCard);
 
         String currentDateString = java.text.DateFormat.getDateInstance(DateFormat.SHORT).format(Calendar.getInstance().getTime());
         currentDate.setText(currentDateString);
@@ -177,6 +187,42 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        addEmissionAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToAddEmission = new Intent(getApplicationContext(), AddEmission.class);
+                startActivity(goToAddEmission);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+        //trying to get profile button to go to profile page - not working right now
+//        profileButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent goToProfile = new Intent(getApplicationContext(), Profile.class);
+//                startActivity(goToProfile);
+//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//            }
+//        });
+
+        currentDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+
+                datePicker = new DatePickerDialog(Home.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        currentDate.setText((month + 1) + "/" + day + "/" + year);
+                    }
+                }, year, month, day);
+                datePicker.show();
+            }
+        });
     }
 
 }

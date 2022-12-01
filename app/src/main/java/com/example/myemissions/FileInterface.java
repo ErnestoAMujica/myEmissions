@@ -57,7 +57,8 @@ public class FileInterface {
 
     //Writes emissions data to file. First parameter is an emission type from
     //EmissionCalculator class, second parameter is the relevant data for that
-    //type, such as miles for vehicles, or kilowatt-hours for energy, etc.
+    //type, such as miles for vehicles, or kilowatt-hours for energy, etc. Last
+    //parameter is the given unit.
     //File format is as follows, with tab characters as spaces:
     //Date:MM/DD/YYYY   Time:HH:MM A    Type:emission_type  Value:0.00
     public void addNewEmission(EmissionCalculator.Source source, double data, String unit) {

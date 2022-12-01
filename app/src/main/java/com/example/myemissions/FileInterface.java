@@ -60,14 +60,15 @@ public class FileInterface {
     //type, such as miles for vehicles, or kilowatt-hours for energy, etc.
     //File format is as follows, with tab characters as spaces:
     //Date:MM/DD/YYYY   Time:HH:MM A    Type:emission_type  Value:0.00
-    public void addNewEmission(EmissionCalculator.SourceName source, double data, String unit) {
+    public void addNewEmission(EmissionCalculator.Source source, double data, String unit) {
         try{dataWrite = new FileWriter(dataFile, true);}
         catch(Exception ex){ex.getStackTrace();};
         String date = java.text.DateFormat.getDateInstance(DateFormat.SHORT).format(Calendar.getInstance().getTime());
         String time = java.text.DateFormat.getTimeInstance(DateFormat.SHORT).format(Calendar.getInstance().getTime());
         try {
-            dataWrite.write("Date:" + date + "\t" + "Time:" + time + "\t" + "Source:" + source + "\t" + "Value:" + data + "\t" + "Unit:" + unit + "\t\n");
+            dataWrite.write("Date:" + date + "\t" + "Time:" + time + "\t" + "Source:" + source.name + "\t" + "Value:" + data + "\t" + "Unit:" + unit + "\t\n");
             dataWrite.flush();
+
         }
         catch (Exception ex){
             ex.getStackTrace();

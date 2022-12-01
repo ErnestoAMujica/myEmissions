@@ -145,11 +145,11 @@ public class Home extends AppCompatActivity {
                 layoutParams.setMarginEnd((int)(20 * scale + 0.5f));
                 emissionData.setLayoutParams(layoutParams);
 
-                EmissionCalculator.SourceName emissionType = EmissionCalculator.SourceName.valueOf(StringUtil.getBetween(line, "Source:", "\t"));
+                EmissionCalculator.Source emissionType = EmissionCalculator.Source.valueOf(StringUtil.getBetween(line, "Source:", "\t"));
                 EmissionCalculator calculator = new EmissionCalculator();
                 double value = Double.parseDouble(StringUtil.getBetween(line, "Value:", "\t"));
-                double emissionCalculation = calculator.transportation(EmissionCalculator.Source.valueOf(emissionType.name()), value);
-                description.setText(emissionType.emissionName + " - "
+                double emissionCalculation = calculator.transportation(emissionType, value);
+                description.setText(emissionType.name + " - "
                                 + StringUtil.getBetween(line, "Value:", "\t") + " "
                                 + StringUtil.getBetween(line, "Unit:", "\t"));
 

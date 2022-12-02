@@ -197,14 +197,14 @@ public class Home extends AppCompatActivity {
         });
 
         //trying to get profile button to go to profile page - not working right now
-//        profileButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToProfile = new Intent(getApplicationContext(), Profile.class);
-//                startActivity(goToProfile);
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//            }
-//        });
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToProfile = new Intent(getApplicationContext(), Profile.class);
+                startActivity(goToProfile);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
 
         currentDate.setOnClickListener(new View.OnClickListener() {
             @Override

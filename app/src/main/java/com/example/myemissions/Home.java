@@ -32,14 +32,14 @@ import java.util.Date;
 public class Home extends AppCompatActivity {
 
     String username;
-    TextView emissionsTotal, usernameDisplay, currentDate;
+    TextView emissionsTotal, usernameDisplay, currentDate, seeAllTextView;
 
     CardView addEmissionAction;
     FileInterface emissions;
     Button addEmissionsButton;
 
     DatePickerDialog datePicker;
-    Button profileButton;
+    Button profileButton, dateButton;
     @SuppressLint("SetTextI18n")
 
     @Override
@@ -55,7 +55,7 @@ public class Home extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         try {
-            username = extras.getString("username", "SampleName");
+            username = extras.getString("username", "TestUser");
         }
         catch (Exception e){
             username = "TestUser";
@@ -63,6 +63,8 @@ public class Home extends AppCompatActivity {
 
         addEmissionsButton = (Button) findViewById(R.id.mainPage_addEmissionsButton);
         profileButton = (Button) findViewById(R.id.profile_button);
+        dateButton = (Button) findViewById(R.id.dateButton);
+        seeAllTextView = (TextView) findViewById(R.id.mainPage_seeAllText);
 
         final float scale = getResources().getDisplayMetrics().scaledDensity;
 
@@ -187,14 +189,6 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        addEmissionAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToAddEmission = new Intent(getApplicationContext(), AddEmission.class);
-                startActivity(goToAddEmission);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
 
         //trying to get profile button to go to profile page - not working right now
 //        profileButton.setOnClickListener(new View.OnClickListener() {
@@ -206,7 +200,7 @@ public class Home extends AppCompatActivity {
 //            }
 //        });
 
-        currentDate.setOnClickListener(new View.OnClickListener() {
+        dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar calendar = Calendar.getInstance();
@@ -217,10 +211,25 @@ public class Home extends AppCompatActivity {
                 datePicker = new DatePickerDialog(Home.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        currentDate.setText((month + 1) + "/" + day + "/" + year);
+                        Intent goToShowEmissions = new Intent(getApplicationContext(), ShowEmissions.class);
+                        goToShowEmissions.putExtra("username", username);
+                        goToShowEmissions.putExtra("date", (month + 1) + "/" + day + "/" + year % 100);
+                        startActivity(goToShowEmissions);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }
                 }, year, month, day);
                 datePicker.show();
+            }
+        });
+
+        seeAllTextView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent goToShowEmissions = new Intent(getApplicationContext(), ShowEmissions.class);
+                goToShowEmissions.putExtra("username", username);
+                goToShowEmissions.putExtra("date", "N/A");
+                startActivity(goToShowEmissions);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

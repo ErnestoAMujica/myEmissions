@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Delete Account">
+
+        <CheckBoxPreference
+            android:key="delete_account"
+            android:title="Delete Account"
+            android:summary="Delete your account and all associated data"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Delete Data">
+        <CheckBoxPreference
+            android:key="delete_data"
+            android:title="Delete Data"
+            android:summary="Delete all data associated with your account"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Change Password">
+        <EditTextPreference
+            android:key="change_password"
+            android:title="Change Password"
+            android:summary="Change your password"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Change Theme">
+        <ListPreference
+            android:key="change_theme"
+            android:title="Change Theme"
+            android:entries="@array/themes"
+            android:entryValues="@array/themes_values"
+            android:summary="Change the theme of the app" />
+    </PreferenceCategory>
+</PreferenceScreen>

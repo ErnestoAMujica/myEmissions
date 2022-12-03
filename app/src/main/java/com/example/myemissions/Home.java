@@ -165,11 +165,18 @@ public class Home extends AppCompatActivity {
                 }
 
                 dateTime.setText(date + " - " + StringUtil.getBetween(line, "Time:", "\t"));
-
-                emissionData.setText("+" + Double.toString(emissionCalculation).substring(0, 4) + " kg");
+                String emissionCalculationString = Double.toString(emissionCalculation);
+                if(emissionCalculationString.length() > 4){
+                    emissionCalculationString = emissionCalculationString.substring(0, 4);
+                }
+                emissionData.setText("+" + emissionCalculationString + " kg");
                 totalEmissions += emissionCalculation;
+                emissionCalculationString = Double.toString(totalEmissions);
+                if(emissionCalculationString.length() > 4){
+                    emissionCalculationString = emissionCalculationString.substring(0, 4);
+                }
                 TextView emissionTotal = findViewById(R.id.mainPage_emissionsDisplayNumber);
-                emissionTotal.setText(Double.toString(totalEmissions).substring(0, 5));
+                emissionTotal.setText(emissionCalculationString);
                 card.addView(description);
                 card.addView(dateTime);
                 card.addView(emissionData);

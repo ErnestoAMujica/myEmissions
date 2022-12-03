@@ -306,6 +306,7 @@ public class AddEmission extends AppCompatActivity{
                 file.addNewEmission(type, value, unit);
 
                 Intent goToHome = new Intent(getApplicationContext(), Home.class);
+                goToHome.putExtra("username", username);
                 startActivity(goToHome);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }

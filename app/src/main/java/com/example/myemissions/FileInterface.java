@@ -66,7 +66,7 @@ public class FileInterface {
         String date = java.text.DateFormat.getDateInstance(DateFormat.SHORT).format(Calendar.getInstance().getTime());
         String time = java.text.DateFormat.getTimeInstance(DateFormat.SHORT).format(Calendar.getInstance().getTime());
         try {
-            dataWrite.write("Date:" + date + "\t" + "Time:" + time + "\t" + "Source:" + source.name + "\t" + "Value:" + data + "\t" + "Unit:" + unit + "\t\n");
+            dataWrite.write("Date:" + date + "\t" + "Time:" + time + "\t" + "Source:" + source.name() + "\t" + "Value:" + data + "\t" + "Unit:" + unit + "\t\n");
             dataWrite.flush();
 
         }

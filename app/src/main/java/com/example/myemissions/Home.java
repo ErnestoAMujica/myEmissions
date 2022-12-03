@@ -145,11 +145,11 @@ public class Home extends AppCompatActivity {
                 layoutParams.setMarginEnd((int)(20 * scale + 0.5f));
                 emissionData.setLayoutParams(layoutParams);
 
-                EmissionCalculator.SourceName emissionType = EmissionCalculator.SourceName.valueOf(StringUtil.getBetween(line, "Source:", "\t"));
+                EmissionCalculator.Source emissionType = EmissionCalculator.Source.valueOf(StringUtil.getBetween(line, "Source:", "\t"));
                 EmissionCalculator calculator = new EmissionCalculator();
                 double value = Double.parseDouble(StringUtil.getBetween(line, "Value:", "\t"));
-                double emissionCalculation = calculator.transportation(EmissionCalculator.Source.valueOf(emissionType.name()), value);
-                description.setText(emissionType.emissionName + " - "
+                double emissionCalculation = calculator.transportation(emissionType, value);
+                description.setText(emissionType.name + " - "
                                 + StringUtil.getBetween(line, "Value:", "\t") + " "
                                 + StringUtil.getBetween(line, "Unit:", "\t"));
 
@@ -165,11 +165,18 @@ public class Home extends AppCompatActivity {
                 }
 
                 dateTime.setText(date + " - " + StringUtil.getBetween(line, "Time:", "\t"));
-
-                emissionData.setText("+" + Double.toString(emissionCalculation).substring(0, 4) + " kg");
+                String emissionCalculationString = Double.toString(emissionCalculation);
+                if(emissionCalculationString.length() > 4){
+                    emissionCalculationString = emissionCalculationString.substring(0, 4);
+                }
+                emissionData.setText("+" + emissionCalculationString + " kg");
                 totalEmissions += emissionCalculation;
+                emissionCalculationString = Double.toString(totalEmissions);
+                if(emissionCalculationString.length() > 4){
+                    emissionCalculationString = emissionCalculationString.substring(0, 4);
+                }
                 TextView emissionTotal = findViewById(R.id.mainPage_emissionsDisplayNumber);
-                emissionTotal.setText(Double.toString(totalEmissions).substring(0, 5));
+                emissionTotal.setText(emissionCalculationString);
                 card.addView(description);
                 card.addView(dateTime);
                 card.addView(emissionData);

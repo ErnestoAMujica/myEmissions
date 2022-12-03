@@ -302,6 +302,7 @@ public class AddEmission extends AppCompatActivity{
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                value = Double.parseDouble(usage.getText().toString());
                 FileInterface file = new FileInterface(AddEmission.this, username);
                 file.addNewEmission(type, value, unit);
 

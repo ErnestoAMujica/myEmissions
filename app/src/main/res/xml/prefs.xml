@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
     <PreferenceCategory
         android:title="Delete Account">
 
-        <CheckBoxPreference
+        <Preference
             android:key="delete_account"
             android:title="Delete Account"
             android:summary="Delete your account and all associated data"
@@ -12,7 +11,7 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:title="Delete Data">
-        <CheckBoxPreference
+        <Preference
             android:key="delete_data"
             android:title="Delete Data"
             android:summary="Delete all data associated with your account"

@@ -42,6 +42,8 @@ public class Home extends AppCompatActivity {
     Button profileButton;
     @SuppressLint("SetTextI18n")
 
+    Button settingsButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,6 +232,17 @@ public class Home extends AppCompatActivity {
                 datePicker.show();
             }
         });
+
+        settingsButton = findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToSettings = new Intent(getApplicationContext(), Preferences.class);
+                startActivity(goToSettings);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
     }
 
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.FileWriter;
 import java.io.File;
+import java.io.IOError;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,7 +39,9 @@ public class FileInterface {
 
         if(!dataFile.exists()) {
             try {
-                dataFile.createNewFile();
+                if(!dataFile.createNewFile()){
+                    throw new Exception();
+                }
             }
             catch (Exception ex){
                 ex.getStackTrace();
@@ -47,7 +50,9 @@ public class FileInterface {
 
         if(!settingsFile.exists()) {
             try {
-                settingsFile.createNewFile();
+                if(!settingsFile.createNewFile()){
+                    throw new Exception();
+                }
             }
             catch (Exception ex){
                 ex.getStackTrace();

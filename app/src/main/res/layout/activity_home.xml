@@ -61,7 +61,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_marginTop="270sp"
-        android:layout_marginBottom="50sp"
+        android:layout_marginBottom="70sp"
         android:elevation="-1sp"
         android:overScrollMode="never"
         >
@@ -87,6 +87,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/mainPage_seeAllText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="See all >"
@@ -241,6 +242,7 @@
         android:layout_height="50sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:clickable="true"
         />
 
     <ImageView
@@ -321,6 +323,17 @@
         android:layout_marginTop="225dp"
         android:layout_marginRight="30dp"
         />
+
+    <Button
+        android:id="@+id/dateButton"
+        android:layout_marginTop="220dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="150sp"
+        android:layout_height="27sp"
+        android:backgroundTint="@color/transparent"
+        style="?android:attr/borderlessButtonStyle">
+    </Button>
 
     <TextView
         android:id="@+id/mainPage_emissionsDisplayText1"

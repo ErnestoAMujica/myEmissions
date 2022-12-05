@@ -32,15 +32,18 @@ import java.util.Date;
 public class Home extends AppCompatActivity {
 
     String username;
-    TextView emissionsTotal, usernameDisplay, currentDate;
+    String password;
+    TextView emissionsTotal, usernameDisplay, currentDate, seeAllTextView;
 
     CardView addEmissionAction;
     FileInterface emissions;
     Button addEmissionsButton;
 
     DatePickerDialog datePicker;
-    Button profileButton;
+    Button profileButton, dateButton;
     @SuppressLint("SetTextI18n")
+
+    Button settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +58,23 @@ public class Home extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         try {
-            username = extras.getString("username", "SampleName");
+            username = extras.getString("username", "TestUser");
         }
         catch (Exception e){
             username = "TestUser";
         }
 
+        try {
+            password = extras.getString("password", "TestPassword");
+        }
+        catch (Exception e){
+            password = "TestPassword";
+        }
+
         addEmissionsButton = (Button) findViewById(R.id.mainPage_addEmissionsButton);
         profileButton = (Button) findViewById(R.id.profile_button);
+        dateButton = (Button) findViewById(R.id.dateButton);
+        seeAllTextView = (TextView) findViewById(R.id.mainPage_seeAllText);
 
         final float scale = getResources().getDisplayMetrics().scaledDensity;
 
@@ -114,7 +126,7 @@ public class Home extends AppCompatActivity {
                 TextView description = new TextView(Home.this);
                 description.setTextColor(getResources().getColor(R.color.medium_gray));
                 description.setTypeface(ResourcesCompat.getFont(Home.this, R.font.sans_serif_bold));
-                description.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                description.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
                 layoutParams = new RelativeLayout.LayoutParams
                         (RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
@@ -138,18 +150,18 @@ public class Home extends AppCompatActivity {
                 TextView emissionData = new TextView(Home.this);
                 emissionData.setTextColor(getResources().getColor(R.color.dark_blue));
                 emissionData.setTypeface(ResourcesCompat.getFont(Home.this, R.font.sans_serif));
-                emissionData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23);
+                emissionData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 layoutParams = new RelativeLayout.LayoutParams
                         (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                 emissionData.setGravity(Gravity.CENTER_VERTICAL | Gravity.END);
                 layoutParams.setMarginEnd((int)(20 * scale + 0.5f));
                 emissionData.setLayoutParams(layoutParams);
 
-                EmissionCalculator.SourceName emissionType = EmissionCalculator.SourceName.valueOf(StringUtil.getBetween(line, "Source:", "\t"));
+                EmissionCalculator.Source emissionType = EmissionCalculator.Source.valueOf(StringUtil.getBetween(line, "Source:", "\t"));
                 EmissionCalculator calculator = new EmissionCalculator();
                 double value = Double.parseDouble(StringUtil.getBetween(line, "Value:", "\t"));
-                double emissionCalculation = calculator.transportation(EmissionCalculator.Source.valueOf(emissionType.name()), value);
-                description.setText(emissionType.emissionName + " - "
+                double emissionCalculation = calculator.transportation(emissionType, value);
+                description.setText(emissionType.name + " - "
                                 + StringUtil.getBetween(line, "Value:", "\t") + " "
                                 + StringUtil.getBetween(line, "Unit:", "\t"));
 
@@ -165,11 +177,18 @@ public class Home extends AppCompatActivity {
                 }
 
                 dateTime.setText(date + " - " + StringUtil.getBetween(line, "Time:", "\t"));
-
-                emissionData.setText("+" + Double.toString(emissionCalculation).substring(0, 4) + " kg");
+                String emissionCalculationString = Double.toString(emissionCalculation);
+                if(emissionCalculationString.length() > 4){
+                    emissionCalculationString = emissionCalculationString.substring(0, 4);
+                }
+                emissionData.setText("+" + emissionCalculationString + " kg");
                 totalEmissions += emissionCalculation;
+                emissionCalculationString = Double.toString(totalEmissions);
+                if(emissionCalculationString.length() > 4){
+                    emissionCalculationString = emissionCalculationString.substring(0, 4);
+                }
                 TextView emissionTotal = findViewById(R.id.mainPage_emissionsDisplayNumber);
-                emissionTotal.setText(Double.toString(totalEmissions).substring(0, 5));
+                emissionTotal.setText(emissionCalculationString);
                 card.addView(description);
                 card.addView(dateTime);
                 card.addView(emissionData);
@@ -187,26 +206,20 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        addEmissionAction.setOnClickListener(new View.OnClickListener() {
+
+        //trying to get profile button to go to profile page - not working right now
+        profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToAddEmission = new Intent(getApplicationContext(), AddEmission.class);
-                startActivity(goToAddEmission);
+                Intent goToProfile = new Intent(getApplicationContext(), Profile.class);
+                goToProfile.putExtra("username", username);
+                goToProfile.putExtra("password", password);
+                startActivity(goToProfile);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
-        //trying to get profile button to go to profile page - not working right now
-//        profileButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToProfile = new Intent(getApplicationContext(), Profile.class);
-//                startActivity(goToProfile);
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//            }
-//        });
-
-        currentDate.setOnClickListener(new View.OnClickListener() {
+        dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar calendar = Calendar.getInstance();
@@ -217,10 +230,35 @@ public class Home extends AppCompatActivity {
                 datePicker = new DatePickerDialog(Home.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        currentDate.setText((month + 1) + "/" + day + "/" + year);
+                        Intent goToShowEmissions = new Intent(getApplicationContext(), ShowEmissions.class);
+                        goToShowEmissions.putExtra("username", username);
+                        goToShowEmissions.putExtra("date", (month + 1) + "/" + day + "/" + year % 100);
+                        startActivity(goToShowEmissions);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }
                 }, year, month, day);
                 datePicker.show();
+            }
+        });
+
+        seeAllTextView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent goToShowEmissions = new Intent(getApplicationContext(), ShowEmissions.class);
+                goToShowEmissions.putExtra("username", username);
+                goToShowEmissions.putExtra("date", "N/A");
+                startActivity(goToShowEmissions);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+        settingsButton = findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToSettings = new Intent(getApplicationContext(), Preferences.class);
+                startActivity(goToSettings);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

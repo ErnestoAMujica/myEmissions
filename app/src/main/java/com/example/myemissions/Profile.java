@@ -38,6 +38,7 @@ public class Profile extends AppCompatActivity {
     TextView nameDisplay;
     String username;
     String password;
+    Button profile_SignOutButton, settingsButton, homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,29 +51,53 @@ public class Profile extends AppCompatActivity {
         );
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
 
-
         usernameDisplay = findViewById(R.id.username_display);
         passwordDisplay = findViewById(R.id.password_display);
         nameDisplay = findViewById(R.id.name_display);
 
         Bundle extras = getIntent().getExtras();
-        try {
-            username = extras.getString("username", "SampleName");
-        }
-        catch (Exception e){
-            username = "TestUser";
-        }
-
-        try {
-            password = extras.getString("password", "Password123");
-        }
-        catch (Exception e){
-            password = "TestPassword";
+        if (extras != null) {
+            username = extras.getString("username");
+            password = extras.getString("password");
         }
 
         usernameDisplay.setText(username);
         nameDisplay.setText(username);
         passwordDisplay.setText(password);
 
+        profile_SignOutButton = (Button) findViewById(R.id.signOutButton);
+
+        profile_SignOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToLoginPage = new Intent(getApplicationContext(), Login.class);
+                startActivity(goToLoginPage);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        });
+
+        settingsButton = findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToSettings = new Intent(getApplicationContext(), Preferences.class);
+                goToSettings.putExtra("username", username);
+                goToSettings.putExtra("password", password);
+                startActivity(goToSettings);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+        homeButton = findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToHome = new Intent(getApplicationContext(), Home.class);
+                goToHome.putExtra("username", username);
+                goToHome.putExtra("password", password);
+                startActivity(goToHome);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        });
     }
 }

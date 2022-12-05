@@ -23,12 +23,13 @@ public class AddEmission extends AppCompatActivity{
 
     private double value = 0.00, emission = 0.00;
     private String item = "";
-    TextView emissionCount, usage;
-    Spinner source, method, size, method2;
-    EmissionCalculator.Source type;
-    CardView addButton;
+    private TextView emissionCount, usage;
+    private Spinner source, method, size, method2;
+    private EmissionCalculator.Source type;
+    private CardView addButton;
+    String MILES = "Miles", THERMS = "Therms", KWH = "kwh";
 
-    String username;
+    String username, password, unit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class AddEmission extends AppCompatActivity{
                      size.setVisibility(View.GONE);
                      usage.setVisibility(View.GONE);
                      usage.setHint(getString(R.string.usage));
+                     unit = MILES;
                  } else if (item.equals("Energy")) {
                      method.setVisibility(View.GONE);
                      method2.setVisibility(View.GONE);
@@ -108,6 +110,7 @@ public class AddEmission extends AppCompatActivity{
                      usage.setHint(getString(R.string.usageE));
                      usage.setVisibility(View.VISIBLE);
                      type = EmissionCalculator.Source.energy;
+                     unit = KWH;
                  } else if (item.equals("Natural Gas")) {
                      method.setVisibility(View.GONE);
                      method2.setVisibility(View.GONE);
@@ -115,6 +118,7 @@ public class AddEmission extends AppCompatActivity{
                      usage.setHint(getString(R.string.usageN));
                      usage.setVisibility(View.VISIBLE);
                      type = EmissionCalculator.Source.natural_gas;
+                     unit = THERMS;
                  }
              }
 
@@ -298,7 +302,13 @@ public class AddEmission extends AppCompatActivity{
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                value = Double.parseDouble(usage.getText().toString());
+                FileInterface file = new FileInterface(AddEmission.this, username);
+                file.addNewEmission(type, value, unit);
+
                 Intent goToHome = new Intent(getApplicationContext(), Home.class);
+                goToHome.putExtra("username", username);
+                goToHome.putExtra("password", password);
                 startActivity(goToHome);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
@@ -312,13 +322,19 @@ public class AddEmission extends AppCompatActivity{
         super.onBackPressed();
         Bundle extras = getIntent().getExtras();
         try {
-            username = extras.getString("username", "SampleName");
+            username = extras.getString("username", "TestUser");
         } catch (Exception e) {
             username = "TestUser";
+        }
+        try {
+            password = extras.getString("password", "TestPassword");
+        } catch (Exception e) {
+            password = "TestPassword";
         }
 
         Intent goToHomePage = new Intent(getApplicationContext(), Home.class);
         goToHomePage.putExtra("username", username);
+        goToHomePage.putExtra("password", password);
         startActivity(goToHomePage);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }

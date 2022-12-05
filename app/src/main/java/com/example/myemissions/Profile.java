@@ -72,7 +72,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent goToLoginPage = new Intent(getApplicationContext(), Login.class);
                 startActivity(goToLoginPage);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
 
@@ -81,6 +81,8 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goToSettings = new Intent(getApplicationContext(), Preferences.class);
+                goToSettings.putExtra("username", username);
+                goToSettings.putExtra("password", password);
                 startActivity(goToSettings);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
@@ -91,8 +93,10 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goToHome = new Intent(getApplicationContext(), Home.class);
+                goToHome.putExtra("username", username);
+                goToHome.putExtra("password", password);
                 startActivity(goToHome);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
     }

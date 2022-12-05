@@ -126,7 +126,7 @@ public class Home extends AppCompatActivity {
                 TextView description = new TextView(Home.this);
                 description.setTextColor(getResources().getColor(R.color.medium_gray));
                 description.setTypeface(ResourcesCompat.getFont(Home.this, R.font.sans_serif_bold));
-                description.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                description.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
                 layoutParams = new RelativeLayout.LayoutParams
                         (RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
@@ -150,7 +150,7 @@ public class Home extends AppCompatActivity {
                 TextView emissionData = new TextView(Home.this);
                 emissionData.setTextColor(getResources().getColor(R.color.dark_blue));
                 emissionData.setTypeface(ResourcesCompat.getFont(Home.this, R.font.sans_serif));
-                emissionData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                emissionData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 layoutParams = new RelativeLayout.LayoutParams
                         (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                 emissionData.setGravity(Gravity.CENTER_VERTICAL | Gravity.END);

@@ -23,7 +23,7 @@ import java.util.Date;
 
 public class ShowEmissions extends AppCompatActivity {
 
-    String username, givenDate;
+    String username, password, givenDate;
     TextView recentEmissionsText, emissionsTotal;
     Button goHomeButton;
     FileInterface emissions;
@@ -45,6 +45,12 @@ public class ShowEmissions extends AppCompatActivity {
         }
         catch (Exception e){
             username = "TestUser";
+        }
+        try {
+            password = extras.getString("password", "TestPassword");
+        }
+        catch (Exception e){
+            password = "TestPassword";
         }
         try {
             givenDate = extras.getString("date", "N/A");
@@ -175,6 +181,7 @@ public class ShowEmissions extends AppCompatActivity {
             public void onClick(View view){
                 Intent goHome = new Intent(getApplicationContext(), Home.class);
                 goHome.putExtra("username", username);
+                goHome.putExtra("password", password);
                 startActivity(goHome);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
@@ -185,6 +192,7 @@ public class ShowEmissions extends AppCompatActivity {
     public void onBackPressed() {
         Intent goHome = new Intent(getApplicationContext(), Home.class);
         goHome.putExtra("username", username);
+        goHome.putExtra("password", password);
         startActivity(goHome);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }

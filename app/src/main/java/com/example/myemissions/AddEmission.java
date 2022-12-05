@@ -29,7 +29,7 @@ public class AddEmission extends AppCompatActivity{
     private CardView addButton;
     String MILES = "Miles", THERMS = "Therms", KWH = "kwh";
 
-    String username, unit;
+    String username, password, unit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -308,6 +308,7 @@ public class AddEmission extends AppCompatActivity{
 
                 Intent goToHome = new Intent(getApplicationContext(), Home.class);
                 goToHome.putExtra("username", username);
+                goToHome.putExtra("password", password);
                 startActivity(goToHome);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
@@ -321,13 +322,19 @@ public class AddEmission extends AppCompatActivity{
         super.onBackPressed();
         Bundle extras = getIntent().getExtras();
         try {
-            username = extras.getString("username", "SampleName");
+            username = extras.getString("username", "TestUser");
         } catch (Exception e) {
             username = "TestUser";
+        }
+        try {
+            password = extras.getString("password", "TestPassword");
+        } catch (Exception e) {
+            password = "TestPassword";
         }
 
         Intent goToHomePage = new Intent(getApplicationContext(), Home.class);
         goToHomePage.putExtra("username", username);
+        goToHomePage.putExtra("password", password);
         startActivity(goToHomePage);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }

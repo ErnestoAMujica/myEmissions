@@ -32,6 +32,7 @@ import java.util.Date;
 public class Home extends AppCompatActivity {
 
     String username;
+    String password;
     TextView emissionsTotal, usernameDisplay, currentDate, seeAllTextView;
 
     CardView addEmissionAction;
@@ -61,6 +62,13 @@ public class Home extends AppCompatActivity {
         }
         catch (Exception e){
             username = "TestUser";
+        }
+
+        try {
+            password = extras.getString("password", "TestPassword");
+        }
+        catch (Exception e){
+            password = "TestPassword";
         }
 
         addEmissionsButton = (Button) findViewById(R.id.mainPage_addEmissionsButton);
@@ -204,6 +212,8 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goToProfile = new Intent(getApplicationContext(), Profile.class);
+                goToProfile.putExtra("username", username);
+                goToProfile.putExtra("password", password);
                 startActivity(goToProfile);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
